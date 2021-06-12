@@ -6,7 +6,8 @@ let maxB = 5;
 let machines_1 = 0;
 
 function result_changed() {
-    let result = document.getElementById("result").value;
+    let resultBox = document.getElementById("result");
+    let result = resultBox.value;
     let operands = [];
     for (let i = 0; i < operandCount; i++) {
         let id = "term-" + (i + 1);
@@ -14,12 +15,17 @@ function result_changed() {
     }
     let expectedResult = operands[0] + operands[1];
     if (expectedResult == result) {
-        document.getElementById("result").value = '';
+        resultBox.style.opacity = 0;
+        resultBox.style.transition = "opacity 0.25s";
+
         //make a new problem
         makeNewProblem();
         //add coins
         coins += 1;
         showCoins();
+    }
+    else {
+        resultBox.style.opacity = 1;
     }
 }
 
@@ -47,8 +53,29 @@ function buy_machine_1() {
     coins -= 10;
     showCoins();
     machines_1++;
-    //todo showmachines
     document.getElementById("machine-1-count").textContent = machines_1;
+}
+
+function increment_number(n) {
+    if (diamonds < 20)
+        return;
+    if (n == 1) {
+        maxA++;
+        diamonds -= 20;
+        document.getElementById("number-1-max").textContent = maxA;
+    }
+    else if (n == 2) {
+        maxB++;
+        diamonds -= 20;
+        document.getElementById("number-2-max").textContent = maxB;
+    }
+}
+
+function result_transitionend() {
+    let resultBox = document.getElementById("result");
+    resultBox.value = '';
+    resultBox.style.opacity = 1;
+    resultBox.style.transition = "opacity 1ms ease 1ms";
 }
 
 function machineTick() {

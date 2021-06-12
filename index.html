@@ -18,11 +18,11 @@
             <span id="operator-1" class="op">+</span>
             <input id="term-2" disabled class="calc-input" value="">
             <span id="operator-1" class="op">=</span>
-            <input id="result" class="calc-input" value="" oninput="result_changed()">
+            <input id="result" class="calc-input" value="" oninput="result_changed()" ontransitionend="result_transitionend()">
         </div>
         <div id="machines" class="box">
             <h3>Machines</h3>
-            <button id="machine-1" onclick="buy_machine_1()">Buy 1 Calculator (10 💎)</button> (<span id="machine-1-count">0</span> owned)
+            <button id="machine-1" onclick="buy_machine_1()">Buy 1 Calculator (10 💰)</button> (<span id="machine-1-count">0</span> owned)
         </div>
         <div id="upgrades" class="box">
             <h3>Upgrades</h3>
