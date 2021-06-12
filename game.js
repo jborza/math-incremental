@@ -4,6 +4,7 @@ let diamonds = 0;
 let maxA = 5;
 let maxB = 5;
 let machines_1 = 0;
+let difficultyBase = 10;
 
 function result_changed() {
     let resultBox = document.getElementById("result");
@@ -21,12 +22,30 @@ function result_changed() {
         //make a new problem
         makeNewProblem();
         //add coins
-        coins += 1;
+        coins += Math.ceil(getDifficulty(operands[0]) + getDifficulty(operands[1]));
         showCoins();
     }
     else {
         resultBox.style.opacity = 1;
     }
+}
+
+Math.logBase = (function() {
+    var log = Math.log;
+    return function(n, base) {
+      return log(n)/(base ? log(base) : 1);
+    };
+  })();
+
+function getDifficulty(n){
+    return Math.logBase(n, difficultyBase);
+}
+
+function lower_difficulty(){
+    if(diamonds < 20)
+        return;
+    difficultyBase = difficultyBase * 0.95;
+    document.getElementById("difficulty").textContent = difficultyBase;
 }
 
 function rand(max) {
@@ -48,6 +67,7 @@ function showDiamonds() {
 
 function buy_machine_1() {
     //check for cost
+    //TODO scale machine cost
     if (coins < 10)
         return;
     coins -= 10;
@@ -56,16 +76,26 @@ function buy_machine_1() {
     document.getElementById("machine-1-count").textContent = machines_1;
 }
 
+function increment_base(n){
+    //increment by some sane base, maybe 1.1 and we'll see
+    let growthFactor = 1.1; //TODO upgradable
+    let newN = n * 1.1;
+    return Math.ceil(newN);
+}
+
 function increment_number(n) {
+    //TODO scale the cost faster than the number increments, maybe 1.15
     if (diamonds < 20)
         return;
     if (n == 1) {
-        maxA++;
+        //increment by some sane base, maybe 1.1
+        maxA = increment_base(maxA);
         diamonds -= 20;
         document.getElementById("number-1-max").textContent = maxA;
     }
     else if (n == 2) {
-        maxB++;
+        //increment by some sane base
+        maxB = increment_base(maxB);
         diamonds -= 20;
         document.getElementById("number-2-max").textContent = maxB;
     }
@@ -79,7 +109,7 @@ function result_transitionend() {
 }
 
 function machineTick() {
-    //TODO 
+    //TODO tick more often, use floating point for diamonds, but show entire ones
     diamonds += machines_1;
     showDiamonds();
 }

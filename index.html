@@ -10,10 +10,12 @@
     Coins: <span id="coins">0</span> 💰
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     Diamonds: <span id="diamonds">0</span> 💎
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Difficulty: <span id="difficulty">10</span> 💪
     <div class="container">
         <div id="computation" class="box" >
             <h3>Computation</h3>
-            Solve this to get coins 💰: <br/>
+            Solve this to get {{coins}} coins 💰: <br/>
             <input id="term-1" disabled class="calc-input" value="">
             <span id="operator-1" class="op">+</span>
             <input id="term-2" disabled class="calc-input" value="">
@@ -30,11 +32,13 @@
             <br/>
             <button id="increment-2" class="buy_button" onclick="increment_number(2)">Increment + number 2 (20 💎)</button> (Now: <span id="number-2-max">5</span>)
             <br/>
-            <button id="unlock-2" class="buy_button" onclick="buy_number(3)">Unlock number 3 (50 💎)</button> 
+            <button id="lower-diff" class="buy_button" onclick="lower_difficulty()">Lower difficulty (20 💎)</button> 
             <br/>
-            <button id="unlock-2" class="buy_button" onclick="buy_number(3)">Unlock - (500 💎)</button> 
+            <button id="unlock-2" class="buy_button" onclick="buy_number(3)" disabled>Unlock number 3 (50 💎)</button> 
             <br/>
-            <button id="unlock-2" class="buy_button" onclick="buy_number(3)">Unlock * problems (500 💎)</button>
+            <button id="unlock-2" class="buy_button" onclick="buy_number(3)" disabled>Unlock - (500 💎)</button> 
+            <br/>
+            <button id="unlock-2" class="buy_button" onclick="buy_number(3)" disabled>Unlock * problems (500 💎)</button>
             <br/>
         </div>
     </div>
