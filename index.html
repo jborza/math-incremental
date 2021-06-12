@@ -7,22 +7,35 @@
 
 <body>
     <h1>Math Incremental</h1>
-    Coins: <span id="coins">0</span>
+    Coins: <span id="coins">0</span> 💰
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    Diamonds: <span id="diamonds">0</span> 💎
     <div class="container">
-        <div id="computation" class="box" style="">
+        <div id="computation" class="box" >
             <h3>Computation</h3>
             Solve this to get coins 💰: <br/>
             <input id="term-1" disabled class="calc-input" value="">
             <span id="operator-1" class="op">+</span>
             <input id="term-2" disabled class="calc-input" value="">
             <span id="operator-1" class="op">=</span>
-            <input id="result" class="calc-input" value="" onchange="result_changed()">
-            
-
-
+            <input id="result" class="calc-input" value="" oninput="result_changed()">
         </div>
-        <div id="upgrades" class="box" style="">
+        <div id="machines" class="box">
             <h3>Machines</h3>
+            <button id="machine-1" onclick="buy_machine_1()">Buy 1 Calculator (10 💎)</button> (<span id="machine-1-count">0</span> owned)
+        </div>
+        <div id="upgrades" class="box">
+            <h3>Upgrades</h3>
+            <button id="increment-1" class="buy_button" onclick="increment_number(1)">Increment + number 1 (20 💎)</button> (Now: <span id="number-1-max">5</span>)
+            <br/>
+            <button id="increment-2" class="buy_button" onclick="increment_number(2)">Increment + number 2 (20 💎)</button> (Now: <span id="number-2-max">5</span>)
+            <br/>
+            <button id="unlock-2" class="buy_button" onclick="buy_number(3)">Unlock number 3 (50 💎)</button> 
+            <br/>
+            <button id="unlock-2" class="buy_button" onclick="buy_number(3)">Unlock - (500 💎)</button> 
+            <br/>
+            <button id="unlock-2" class="buy_button" onclick="buy_number(3)">Unlock * problems (500 💎)</button>
+            <br/>
         </div>
     </div>
 </body>
